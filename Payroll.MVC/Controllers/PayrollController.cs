@@ -59,15 +59,42 @@ namespace Payroll.MVC.Controllers
         {
             return PartialView("_SalaryComponentList", SalaryComponentRepo.Get());
         }
-        public ActionResult GetSalaryComponent(int id)
+        public ActionResult GetSalaryComponent(int jpId, int scId)
         {
-            return PartialView("_GetSalaryComponent", EmployeeSalaryRepo.GetByComponentId(id));
+            EmployeeSalaryViewModel model = EmployeeSalaryRepo.GetByComponentId(scId);
+            SalaryDefaultValueViewModel sd = SalaryDefaultValueRepo.GetByJobPosition(jpId, scId);
+            if (sd != null)
+            {
+                model.BasicValue = sd.Value;
+            }
+            return PartialView("_GetSalaryComponent", model);
         }
         [HttpPost]
         public ActionResult SavePayroll(List<EmployeeSalaryViewModel> models)
         {
             Responses responses = EmployeeSalaryRepo.SaveSalary(models);
-            return Json(new { Response = responses }, JsonRequestBehavior.AllowGet);            
+            return Json(new { Response = responses }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult RemoveComponent(string bId, int scId)
+        {
+            List<EmployeeSalaryViewModel> models = EmployeeSalaryRepo.GetByBadgeId(bId, scId);
+            if (models.Count > 0 )
+            {
+                EmployeeSalaryViewModel model = models[0];
+                return PartialView("_RemoveComponent", model);
+            }
+            return PartialView("_RemoveComponent", new EmployeeSalaryViewModel());
+        }
+        [HttpPost]
+        public ActionResult RemoveConfirm(int id)
+        {
+            Responses responses = EmployeeSalaryRepo.RemoveByComponentId(id);
+            if (responses.Success)
+            {
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { success = false, message = "Error msg" }, JsonRequestBehavior.AllowGet);
         }
     }
 }

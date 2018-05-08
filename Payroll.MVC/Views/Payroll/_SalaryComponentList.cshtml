@@ -48,7 +48,7 @@
         $.ajax({
             url: '@Url.Action("GetSalaryComponent", "Payroll")',
             type: 'get',
-            data: { id: $(this).attr("data-id") },
+            data: { jpId: $("#JobPositionId").val(), scId: $(this).attr("data-id") },
             success: function (result) {
                 $("#employee-payroll").append(result);
                 $("#modal-Form").modal("hide");

@@ -78,6 +78,10 @@ namespace Payroll.Repository
             return result;
         }
         public static List<EmployeeSalaryViewModel> GetByBadgeId(string badgeId)
+        {            
+            return GetByBadgeId(badgeId, 0);
+        }
+        public static List<EmployeeSalaryViewModel> GetByBadgeId(string badgeId, int salaryComponentId)
         {
             List<EmployeeSalaryViewModel> result = new List<EmployeeSalaryViewModel>();
             using (var db = new PayrollContext())
@@ -86,11 +90,15 @@ namespace Payroll.Repository
                           join e in db.Employee on d.BadgeId equals e.BadgeId
                           join p in db.PayrollPeriod on d.PayrollPeriodId equals p.Id
                           join sc in db.SalaryComponent on d.SalaryComponentId equals sc.Id
-                          where d.BadgeId == badgeId && p.Id == PayrollPeriodRepo.SelectedPeriod.Id
+                          where d.BadgeId == badgeId 
+                          && p.Id == PayrollPeriodRepo.SelectedPeriod.Id 
+                          && d.SalaryComponentId == (salaryComponentId != 0? salaryComponentId: d.SalaryComponentId)
                           select new EmployeeSalaryViewModel
                           {
                               Id = d.Id,
                               BadgeId = d.BadgeId,
+                              PPMonth = p.PreiodMonth,
+                              PPYear = p.PeriodYear,
                               PayrollPeriodId = d.PayrollPeriodId,
                               SalaryComponentId = d.SalaryComponentId,
                               SalaryComponentCode = sc.Code,
@@ -218,5 +226,29 @@ namespace Payroll.Repository
             }
             return result;
         }
+        
+
+        public static Responses RemoveByComponentId(int id)
+        {
+            Responses result = new Responses();
+            try
+            {
+                using (var db = new PayrollContext())
+                {
+                    EmployeeSalary es = db.EmployeeSalary
+                        .Where(o => o.Id == id)
+                        .FirstOrDefault();
+                    db.EmployeeSalary.Remove(es);
+                    db.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                result.Message = ex.Message;
+                result.Success = false;
+            }
+            return result;
+        }
+
     }
 }

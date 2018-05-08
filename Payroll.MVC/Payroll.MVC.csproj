@@ -1117,6 +1117,7 @@
     <Content Include="Views\Payroll\_EmployeePayroll.cshtml" />
     <Content Include="Views\Payroll\_SalaryComponentList.cshtml" />
     <Content Include="Views\Payroll\_GetSalaryComponent.cshtml" />
+    <Content Include="Views\Payroll\_RemoveComponent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

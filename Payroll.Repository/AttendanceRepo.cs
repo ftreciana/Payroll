@@ -47,6 +47,25 @@ namespace Payroll.Repository
             return result;
         }
 
+        public static AttendanceViewModel GetByBadgeId(string badgeId)
+        {
+            AttendanceViewModel result = new AttendanceViewModel();
+            using (var db = new PayrollContext())
+            {
+                result = (from d in db.Attendance
+                          where d.BadgeId == badgeId
+                          select new AttendanceViewModel
+                          {
+                              Id = d.Id,
+                              BadgeId = d.BadgeId,
+                              CheckIn = d.CheckIn,
+                              CheckOut = d.CheckOut,
+                              IsActivated = d.IsActivated
+                          }).FirstOrDefault();
+            }
+            return result;
+        }
+
         public static Responses Update(AttendanceViewModel entity)
         {
             Responses result = new Responses();

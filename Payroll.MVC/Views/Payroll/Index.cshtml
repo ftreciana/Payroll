@@ -70,6 +70,7 @@
         $(document).ready(function () {
             EmployeeInfo();
         })
+        var RemoveObject = null;
 
         function EmployeeInfo(bId) {
             $.ajax({
@@ -139,7 +140,28 @@
         })
 
         function Remove(obj) {
-            $(obj).closest("tr").remove();
+            var tr = $(obj).closest("tr");
+            RemoveObject = tr;
+            var badgeId = $("#BadgeId").val();
+            var ppId = @Payroll.Repository.PayrollPeriodRepo.SelectedPeriod.Id;
+            var scId = $(tr).find("input[name=SalaryComponentId]").val();
+            var data = {
+                BadgeId : badgeId,
+                PayrollPeriodId : ppId,
+                SalaryComponentId : scId
+            }
+
+            $.ajax({
+                url: '@Url.Action("RemoveComponent", "Payroll")',
+                type: 'get',
+                data: {bId: badgeId, scId: scId},
+                success: function (result) {
+                    $(".modal-body").html(result);
+                    $(".modal-title").html("Remove Component");
+                    $("#modal-Form").modal("show");
+                }
+            })
+            //alert(JSON.stringify(data));
         }
 
         $("#btn-save").click(function () {
@@ -164,11 +186,11 @@
                 type: 'post',
                 data: {models: dataList},
                 success: function (result) {
-                    if (result.Response.Success) 
+                    if (result.Response.Success)
                     {
                         alert("Success");
                     }
-                    else 
+                    else
                     {
                         alert("Error");
                     }
@@ -177,5 +199,12 @@
 
             //alert(JSON.stringify(dataList));
         })
+
+        function RemoveComponent(){
+            if (RemoveObject != null) {
+                $(RemoveObject).remove(); 
+            }
+        }
+
     </script>
 }
