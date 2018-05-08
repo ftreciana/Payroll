@@ -1,0 +1,14 @@
+F:\BootCamp\Batch147\Payroll\Payroll.Repository\bin\Debug\Payroll.Repository.dll.config
+F:\BootCamp\Batch147\Payroll\Payroll.Repository\bin\Debug\Payroll.Repository.dll
+F:\BootCamp\Batch147\Payroll\Payroll.Repository\bin\Debug\Payroll.Repository.pdb
+F:\BootCamp\Batch147\Payroll\Payroll.Repository\bin\Debug\EntityFramework.dll
+F:\BootCamp\Batch147\Payroll\Payroll.Repository\bin\Debug\EntityFramework.SqlServer.dll
+F:\BootCamp\Batch147\Payroll\Payroll.Repository\bin\Debug\Payroll.DataModel.dll
+F:\BootCamp\Batch147\Payroll\Payroll.Repository\bin\Debug\Payroll.ViewModel.dll
+F:\BootCamp\Batch147\Payroll\Payroll.Repository\bin\Debug\Payroll.DataModel.pdb
+F:\BootCamp\Batch147\Payroll\Payroll.Repository\bin\Debug\Payroll.ViewModel.pdb
+F:\BootCamp\Batch147\Payroll\Payroll.Repository\bin\Debug\EntityFramework.xml
+F:\BootCamp\Batch147\Payroll\Payroll.Repository\bin\Debug\EntityFramework.SqlServer.xml
+F:\BootCamp\Batch147\Payroll\Payroll.Repository\obj\Debug\Payroll.Repository.csprojResolveAssemblyReference.cache
+F:\BootCamp\Batch147\Payroll\Payroll.Repository\obj\Debug\Payroll.Repository.dll
+F:\BootCamp\Batch147\Payroll\Payroll.Repository\obj\Debug\Payroll.Repository.pdb

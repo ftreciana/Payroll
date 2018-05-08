@@ -1,0 +1,5 @@
+F:\BootCamp\Batch147\Payroll\Payroll.ViewModel\bin\Debug\Payroll.ViewModel.dll
+F:\BootCamp\Batch147\Payroll\Payroll.ViewModel\bin\Debug\Payroll.ViewModel.pdb
+F:\BootCamp\Batch147\Payroll\Payroll.ViewModel\obj\Debug\Payroll.ViewModel.csprojResolveAssemblyReference.cache
+F:\BootCamp\Batch147\Payroll\Payroll.ViewModel\obj\Debug\Payroll.ViewModel.dll
+F:\BootCamp\Batch147\Payroll\Payroll.ViewModel\obj\Debug\Payroll.ViewModel.pdb
