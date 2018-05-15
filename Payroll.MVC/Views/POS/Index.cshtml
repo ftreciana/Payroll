@@ -173,8 +173,6 @@
                 $.each(result, function (i, item) {
 
                     var tr = "<tr><td><button type='button' class='btn-default btn-success btn-select' data-id='" + item.Id + "' onclick ='SelectItem(this)'>Select</button></td> <td>" + item.Code + "</td><td>" + item.Description + "</td><td>" + item.Price + "</td></tr>";
-
-                    //var tr = "<tr><td></td> <td>{0}</td> <td>{1}</td> <td>{2}</td></tr>".format(item.Code, item.Description, item.Price);
                     table += tr;
 
                 })

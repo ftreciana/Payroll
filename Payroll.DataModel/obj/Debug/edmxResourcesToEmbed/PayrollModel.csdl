@@ -359,5 +359,14 @@
       <End Role="SellingHeader" EntitySet="SellingHeader" />
       <End Role="SellingDetail" EntitySet="SellingDetail" />
     </AssociationSet>
+    <EntitySet Name="Users" EntityType="Payroll.DataModel.Users" />
   </EntityContainer>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
 </Schema>

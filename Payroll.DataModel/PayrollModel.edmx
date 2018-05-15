@@ -189,6 +189,15 @@
           <Property Name="ModifyBy" Type="varchar" MaxLength="50" />
           <Property Name="ModifyDate" Type="datetime" />
         </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="50" />
+        </EntityType>
         <Association Name="FK_Departement_Division">
           <End Role="Division" Type="Self.Division" Multiplicity="1" />
           <End Role="Departement" Type="Self.Departement" Multiplicity="*" />
@@ -310,6 +319,7 @@
           <EntitySet Name="SalaryDefaultValue" EntityType="Self.SalaryDefaultValue" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SellingDetail" EntityType="Self.SellingDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SellingHeader" EntityType="Self.SellingHeader" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Departement_Division" Association="Self.FK_Departement_Division">
             <End Role="Division" EntitySet="Division" />
             <End Role="Departement" EntitySet="Departement" />
@@ -710,7 +720,17 @@
             <End Role="SellingHeader" EntitySet="SellingHeader" />
             <End Role="SellingDetail" EntitySet="SellingDetail" />
           </AssociationSet>
+          <EntitySet Name="Users" EntityType="Payroll.DataModel.Users" />
         </EntityContainer>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -910,6 +930,16 @@
                 <ScalarProperty Name="SellingTotal" ColumnName="SellingTotal" />
                 <ScalarProperty Name="Payment" ColumnName="Payment" />
                 <ScalarProperty Name="IsActivated" ColumnName="IsActivated" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Payroll.DataModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

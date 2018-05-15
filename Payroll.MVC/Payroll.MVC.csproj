@@ -171,9 +171,12 @@
     <Compile Include="Controllers\SalaryDefaultValueController.cs" />
     <Compile Include="Controllers\SellingDetailController.cs" />
     <Compile Include="Controllers\SellingHeaderController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Crypto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="MyRoleProvider\SiteRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -1120,6 +1123,8 @@
     <Content Include="Views\Payroll\_GetSalaryComponent.cshtml" />
     <Content Include="Views\Payroll\_RemoveComponent.cshtml" />
     <Content Include="Views\POS\Index.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Registration.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1134,6 +1139,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Payroll.DataModel\Payroll.DataModel.csproj">
+      <Project>{56cfa0c9-171a-4847-94b5-1851abc45b61}</Project>
+      <Name>Payroll.DataModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Payroll.Repository\Payroll.Repository.csproj">
       <Project>{b0e9168a-746e-4812-9b7d-a17d93b8cda9}</Project>
       <Name>Payroll.Repository</Name>
