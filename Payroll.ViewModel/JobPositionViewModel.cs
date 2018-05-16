@@ -12,8 +12,27 @@ namespace Payroll.ViewModel
         public int Id { get; set; }
         public string Code { get; set; }
 
+        [Display(Name = "Division")]
+        public int DivisionId { get; set; }
+
+        public string DivisionCode { get; set; }
+        
+        [Display(Name = "Division")]
+        public string DivisionName { get; set; }
+
+        [Display(Name = "Division")]
+        public string DivisionCodeName
+        {
+            get
+            {
+                return "[" + DivisionCode + "] " + DivisionName;
+            }
+        }
+
         [Display(Name ="Departement")]
         public int DepartementId { get; set; }
+
+        public string DepartementCode { get; set; }
 
         [Display(Name = "Departement")]
         public string DepartementName { get; set; }

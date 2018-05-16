@@ -82,6 +82,10 @@ namespace Payroll.Repository
                 result = (from d in db.Employee
                           join jp in db.JobPosition
                           on d.JobPositionId equals jp.Id
+                          join dep in db.Departement on
+                          jp.DepartementId equals dep.Id
+                          join div in db.Division on
+                          dep.DivisionId equals div.Id
                           where d.Id == id
                           select new EmployeeViewModel
                           {
@@ -89,6 +93,12 @@ namespace Payroll.Repository
                               BadgeId = d.BadgeId,
                               JobPositionId = d.JobPositionId,
                               JobPositionName = jp.Description,
+                              DivisionId = div.Id,
+                              DivisionCode = div.Code,
+                              DivisionName = div.Description,
+                              DepartementId = dep.Id,
+                              DepartementCode = dep.Code,
+                              DepartementName = dep.Description,
                               FirstName = d.FirstName,
                               MiddleName = d.MiddleName,
                               LastName = d.LastName,

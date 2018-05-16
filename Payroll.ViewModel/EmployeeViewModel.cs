@@ -10,14 +10,68 @@ namespace Payroll.ViewModel
     public class EmployeeViewModel
     {
         public int Id { get; set; }
+
         public string BadgeId { get; set; }
+
         public int JobPositionId { get; set; }
 
         [Display(Name ="Job Position")]
         public string JobPositionName { get; set; }
+
+        [Display(Name = "Job Position")]
+        public string JobPositionCode { get; set; }
+
+        [Display(Name = "Job Position")]
+        public string JobCodeName
+        {
+            get
+            {
+                return "[" + JobPositionCode + "] " + JobPositionName;
+            }
+        }
+
+        [Display(Name = "Department")]
+        public int DepartementId { get; set; }
+
+        [Display(Name = "Department")]
+        public string DepartementName { get; set; }
+
+        [Display(Name = "Department")]
+        public string DepartementCode { get; set; }
+
+        [Display(Name = "Department")]
+        public string DepCodeName
+        {
+            get
+            {
+                return "[" + DepartementCode + "] " + DepartementName;
+            }
+        }
+
+        [Display(Name = "Division")]
+        public int DivisionId { get; set; }
+
+        [Display(Name = "Division")]
+        public string DivisionName { get; set; }
+
+        [Display(Name = "Division")]
+        public string DivisionCode { get; set; }
+
+        [Display(Name = "Division")]
+        public string DivCodeName
+        {
+            get
+            {
+                return "[" + DivisionCode + "] " + DivisionName;
+            }
+        }
+
         public string FirstName { get; set; }
+
         public string MiddleName { get; set; }
+
         public string LastName { get; set; }
+
         [Display(Name = "Name")]
         public string FullName
         {

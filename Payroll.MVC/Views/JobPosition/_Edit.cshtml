@@ -20,11 +20,21 @@
         </div>
 
         <div class="form-group">
+            @Html.LabelFor(model => model.DivisionId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <select class="form-control valid" data-val="true" data-val-number="The field Division must be a number." data-val-required="The Departement field is required." id="DivisionId" name="DivisionId">
+                    <option value="">Select Division</option>s
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.DepartementId, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.DepartementId, (IEnumerable<SelectListItem>)ViewBag.DepartementList, "Select Departement", new { @class = "form-control" })
-                @*@Html.EditorFor(model => model.DepartementId, new { htmlAttributes = new { @class = "form-control" } })*@
-                @Html.ValidationMessageFor(model => model.DepartementId, "", new { @class = "text-danger" })
+                <select class="form-control valid" data-val="true" data-val-number="The field Division must be a number." data-val-required="The Departement field is required." id="DepartementId" name="DepartementId">
+                    <option value="">Select Departement</option>
+                    <option selected="selected" value="@Model.DepartementId">@Model.DepartementName</option>
+                </select>
             </div>
         </div>
 
@@ -58,6 +68,48 @@
 @Scripts.Render("~/bundles/jqueryval")
 
 <script type="text/javascript">
+    $(document).ready(function () {
+        SetDivisionId(@Model.DivisionId);
+        SetDepartementId(@Model.DivisionId, @Model.DepartementId);
+    })
+
+    function SetDivisionId(divId) {
+        $.ajax({
+            url: 'http://localhost:12187/api/division',
+            type: 'GET',
+            success: function (result) {
+                $('#DivisionId').html('<option value="0">Select Division</option>');
+                $('#DepartementId').html('<option value="0">Select Departement</option>');
+                $.each(result, function (i, item) {
+                    var option = '<option value="' + item.Id + '">' + item.Description + '</option>';
+                    $('#DivisionId').append(option);
+                })
+                $('#DivisionId').val(divId);
+            },
+            error: function (err) {
+                alert(err);
+                $('#DepartementId').html('<option value="0">Select Departement</option>');
+            }
+        })
+    }
+
+    function SetDepartementId(divId, depId) {
+        $.ajax({
+            url: 'http://localhost:12187/api/Departements/division/' + divId,
+            type: 'GET',
+            success: function (result) {
+                $('#DepartementId').html('<option value="0">Select Departement</option>');
+                $.each(result, function (i, item) {
+                    var option = '<option value="' + item.Id + '">' + item.Description + '</option>';
+                    $('#DepartementId').append(option);
+                })
+                $('#DepartementId').val(depId);
+            },
+            error: function (err) {
+                alert(err);
+            }
+        })
+    }
     $("#edit-form").submit(function () {
         $.ajax({
             url: '@Url.Action("Edit", "JobPosition")',
@@ -75,4 +127,8 @@
         })
         return false;
     })
+
+    $('#DivisionId').change(function () {
+        SetDepartementId($(this).val(), 0);        
+    });
 </script>

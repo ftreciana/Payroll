@@ -23,7 +23,6 @@ namespace Payroll.MVC.Controllers
         //CREATE GET
         public ActionResult Create()
         {
-            ViewBag.JobPositionList = new SelectList(JobPositionRepo.Get(), "Id", "Description");
             return View("_Create");
         }
         //POST
@@ -48,7 +47,6 @@ namespace Payroll.MVC.Controllers
         //EDIT GET
         public ActionResult Edit(int id)
         {
-            ViewBag.JobPositionList = new SelectList(JobPositionRepo.Get(), "Id", "Description");
             return View("_Edit", EmployeeRepo.GetById(id));
         }
 

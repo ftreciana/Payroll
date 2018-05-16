@@ -33,6 +33,10 @@ namespace Payroll.ViewModel
                 return "[" + DivisionCode + "] " + DivisionName;
             }
         }
+        public string DepartementCode { get; set; }
+        
+        [Display(Name = "Departement")]
+        public string DepartementName { get; set; }
 
         [MaxLength(50), Required]
         public string Description { get; set; }

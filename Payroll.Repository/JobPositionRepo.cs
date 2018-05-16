@@ -52,6 +52,28 @@ namespace Payroll.Repository
             }
             return result;
         }
+        public static List<JobPositionViewModel> GetDepId(int depId)
+        {
+            List<JobPositionViewModel> result = new List<JobPositionViewModel>();
+            using (var db = new PayrollContext())
+            {
+                result = (from dep in db.Departement
+                          join job in db.JobPosition on
+                          dep.Id equals job.DepartementId
+                          where dep.Id == depId
+                          select new JobPositionViewModel
+                          {
+                              Id = job.Id,
+                              Code = job.Code,
+                              Description = job.Description,
+                              DepartementId = dep.Id,
+                              DepartementCode = dep.Code,
+                              DepartementName = dep.Description,
+                              IsActivated = job.IsActivated
+                          }).ToList();
+            }
+            return result;
+        }
 
         public static Responses Update(JobPositionViewModel entity)
         {
