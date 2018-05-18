@@ -88,6 +88,24 @@
         })
     }
 
+    $("#create-form").submit(function () {
+        $.ajax({
+            url: '@Url.Action("Create", "JobPosition")',
+            type: this.method,
+            data: $(this).serialize(),
+            success: function (result) {
+                if (result.success) {
+                    $("#modal-Form").modal("hide")
+                    ShowList();
+                }
+                else {
+                    alert("Error : " + result.message)
+                }
+            }
+        })
+        return false;
+    })
+
     $('#DivisionId').change(function () {
         $.ajax({
             url: 'http://localhost:12187/api/departements/division/' + $(this).val(),
@@ -107,22 +125,23 @@
             }
         })
     });
-
-    $("#create-form").submit(function () {
+    $('#DepartementId').change(function () {
         $.ajax({
-            url: '@Url.Action("Create", "JobPosition")',
-            type: this.method,
-            data: $(this).serialize(),
+            url: 'http://localhost:12187/api/jobpositions/departements/' + $(this).val(),
+            type: 'GET',
             success: function (result) {
-                if (result.success) {
-                    $("#modal-Form").modal("hide")
-                    ShowList();
-                }
-                else {
-                    alert("Error : " + result.message)
-                }
+                //alert(JSON.stringify(result));
+                $('#JobPositionId').html('<option value="">Select Job Position</option>');
+                $.each(result, function (i, item) {
+                    var option = '<option value="' + item.Id + '">' + item.Description + '</option>';
+                    $('#JobPositionId').append(option);
+
+                })
+            },
+            error: function (err) {
+                //alert(err);
+                $('#JobPositionId').html('<option value="">Select Job Position</option>');
             }
         })
-        return false;
-    })
+    });
 </script>

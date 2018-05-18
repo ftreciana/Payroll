@@ -2,12 +2,23 @@
     ViewBag.Title = "Division";
 }
 
+@using Payroll.MVC.Security;
+@using Payroll.Repository;
+
 <h3>List of @ViewBag.Title</h3>
 
 <div class="row">
+@if (Request.IsAuthenticated)
+{
+    var level = AccountRepo.GetAccessRight(SessionPersister.Username, "Division");
+    if (level.AccessLevel == "W")
+    {
     <div class="col-md-6">
-        <button type="button" id="btn-Create" class="btn btn-lg btn-success">Create New</button>
+        
+            <button type="button" id="btn-Create" class="btn btn-lg btn-success">Create New</button>            
     </div>
+    }
+}
 </div>
 
 <div class="row">

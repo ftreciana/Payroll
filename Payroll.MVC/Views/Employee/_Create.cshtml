@@ -1,5 +1,5 @@
 ﻿@model Payroll.ViewModel.EmployeeViewModel
-
+@using Payroll.MVC.Address
 @{
     Layout = "";
 }
@@ -149,7 +149,7 @@
 
     function SetDivisionId(divId) {
         $.ajax({
-            url: 'http://localhost:12187/api/division',
+            url: '@WebAddress.APIAddress()/api/division',
             type: 'GET',
             success: function (result) {
                 $('#DivisionId').html('<option value="0">Select Division</option>');
@@ -206,7 +206,7 @@
 
     $('#DivisionId').change(function () {
         $.ajax({
-            url: 'http://localhost:12187/api/Departements/division/' + $(this).val(),
+            url: '@WebAddress.APIAddress()/api/Departements/division/' + $(this).val(),
             type: 'GET',
             success: function (result) {
                 //alert(JSON.stringify(result));
@@ -228,7 +228,7 @@
 
     $('#DepartementId').change(function () {
         $.ajax({
-            url: 'http://localhost:12187/api/jobpositions/departements/' + $(this).val(),
+            url: '@WebAddress.APIAddress()/api/jobpositions/departements/' + $(this).val(),
             type: 'GET',
             success: function (result) {
                 //alert(JSON.stringify(result));

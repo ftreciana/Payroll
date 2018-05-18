@@ -1,4 +1,5 @@
-﻿using Payroll.Repository;
+﻿using Payroll.MVC.Security;
+using Payroll.Repository;
 using Payroll.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Payroll.MVC.Controllers
 {
+    [CustomAuthorize(Roles ="Departement")]
     public class DepartementController : Controller
     {
         // GET: Departement
@@ -19,6 +21,8 @@ namespace Payroll.MVC.Controllers
         {
             return View("_List", DepartementRepo.Get());
         }
+
+        [CustomAuthorize(Roles = "Departement", AccessLevel ="W")]
         public ActionResult Create()
         {
             ViewBag.DivisionList = new SelectList(DivisionRepo.Get(), "Id", "Description");
@@ -42,9 +46,11 @@ namespace Payroll.MVC.Controllers
             }
             return Json(new { success = false, message = "Invalid" }, JsonRequestBehavior.AllowGet);
         }
+        [CustomAuthorize(Roles = "Departement", AccessLevel = "W")]
         //GET EDIT
         public ActionResult Edit(int id)
         {
+            ViewBag.DivisionList = new SelectList(DivisionRepo.Get(), "Id", "Description");
             return View("_Edit", DepartementRepo.GetById(id));
         }
         //POST EDIT
